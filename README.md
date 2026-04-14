@@ -6,52 +6,42 @@ class Node:
         self.next = None
 
 
-class LinkedList:
-    def __init__(self):
-        self.head = None 
+def add_front(self, new):
+    if self.head is None:
+        self.head = new
+    else:
+        new.next = self.head
+        self.head = new
 
-    #addFront
-    def add_front(self, name, age, gender):
-        new = Node(name, age, gender)
+def add_between(self, target_name, new_node):
+    if self.head is None:
+        self.head = new_node
+    else:
+        tmp = self.head
 
-        if self.head is None:
-            self.head = new
-        else:
-            new.next = self.head
-            self.head = new
+        while tmp is not None:
+            if tmp.name == target_name:
+                new_node.next = tmp.next
+                tmp.next = new_node
+                return
+            else:
+                tmp = tmp.next
 
-    #addEnd
-    def add_end(self, name, age, gender):
-        new = Node(name, age, gender)
+    print(f"{target_name} not found")
 
-        if self.head is None:
-            self.head = new
-        else:
-            temp = self.head
 
-            while temp.next is not None:
-                temp = temp.next
+def add_end(self, new_node):
+    if self.head is None:
+        self.head = new_node
+    else:
+        tmp = self.head
+        while tmp.next is not None:
+            tmp = tmp.next
+        tmp.next = new_node
 
-            temp.next = new
 
-    #addBetween
-    def add_between(self, name, age, gender, index):
-        new = Node(name, age, gender)
-
-        if index == 0:
-            new.next = self.head
-            self.head = new
-            return
-
-        temp = self.head
-        count = 0
-
-        while temp is not None and count < index - 1:
-            temp = temp.next
-            count += 1
-
-        if temp is None:
-            print("Index out of range")
-        else:
-            new.next = temp.next
-            temp.next = new
+def print_list(self):
+    tmp = self.head
+    while tmp is not None:
+        print(tmp.name, tmp.age, tmp.gender)
+        tmp = tmp.next
